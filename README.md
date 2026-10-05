@@ -1,56 +1,83 @@
-# Welcome to your Expo app 👋
+# OneScan
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native (Expo) app for scanning QR codes, bar codes, and Indian vehicle number plates.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Splash Screen**: 5-second animated splash with branded logo
+- **QR Scanner**: Scan QR codes with pinch-to-zoom. URLs open in the browser, text goes to the result screen.
+- **Bar Code Scanner**: Scan multiple barcode formats (EAN13, EAN8, Code128, Code39, Code93, Codabar, ITF14, UPC_A, UPC_E)
+- **Number Plate Recognition**: Upload a vehicle number plate image from the gallery and get the plate number, state, and vehicle type
+- **Result Screen**: Clean display of scanned data with copy and scan-again options
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+| Technology | Version / Details |
+| --- | --- |
+| React Native | Latest version bundled with Expo SDK 54 |
+| TypeScript | Type-safe codebase |
+| Expo | SDK 54 |
+| Expo Router | File-based navigation |
+| `expo-camera` | QR / bar code scanning |
+| `expo-image-picker` | Gallery access |
+| `react-native-gesture-handler` | Pinch-to-zoom |
+| Plate Recognizer API | Number plate recognition (Snapshot API) |
+| Node.js | v18 or higher recommended |
+| npm | v9 or higher recommended |
 
-   ```bash
-   npx expo start
-   ```
+> Check `package.json` for the exact installed package versions.
 
-In the output, you'll find options to open the app in a
+## Project Structure
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+├── app/                  # Screens (expo-router)
+│   ├── _layout.tsx       # Root navigation
+│   ├── index.tsx         # Splash screen
+│   ├── home.tsx          # Home (3 scan options)
+│   ├── qr-scan.tsx       # QR scanner
+│   ├── barcode-scan.tsx  # Bar code scanner
+│   ├── result.tsx        # QR / Bar code result
+│   ├── plate-scan.tsx    # Number plate upload
+│   └── plate-result.tsx  # Plate recognition result
+├── components/
+│   └── Logo.tsx          # Branded logo component
+└── constants/
+    └── theme.ts          # Colors, sizes, shadows
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Getting Started
 
-### Other setup steps
+### 1. Clone the repository
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+git clone <your-repository-url>
+cd OneScan
+```
 
-## Learn more
+### 2. Install dependencies
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+npm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 3. Set up environment variables
 
-## Join the community
+Create a `.env` file in the project root:
 
-Join our community of developers creating universal apps.
+```env
+EXPO_PUBLIC_USE_RN_FETCH=1
+EXPO_PUBLIC_PLATE_RECOGNIZER_TOKEN=your_actual_token
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 4. Run the project
+
+```bash
+npx expo start
+```
+
+Then scan the QR code with the **Expo Go** app on your phone, or press `a` for an Android emulator / `i` for an iOS simulator.
+
+## API
+
+Number plate recognition uses the [Plate Recognizer](https://platerecognizer.com/) Snapshot API. The free tier includes 2,500 scans per month.
