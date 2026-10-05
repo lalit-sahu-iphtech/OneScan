@@ -1,65 +1,75 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+// OneScan Theme — Colors, Fonts, Sizes
 
-import '@/global.css';
+export const COLORS = {
+  // Brand colors
+  primary: '#6C63FF',        // Purple 
+  primaryDark: '#5A52D5',    // Pressed state
+  secondary: '#FF6584',      // Pink accent
 
-import { Platform } from 'react-native';
+  // Backgrounds
+  background: '#0F0F1E',     // Dark navy
+  surface: '#1A1A2E',        // Card / button bg
+  surfaceLight: '#252540',   // Lighter surface
 
-export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+  // Text
+  text: '#FFFFFF',           // Primary text
+  textMuted: '#B0B0C3',      // Secondary text
+  textDim: '#6B6B85',        // Disabled / hint text
+
+  // Borders & lines
+  border: '#2A2A40',
+
+  // Status
+  success: '#4ADE80',
+  error: '#F87171',
+
+  // Overlay
+  overlay: 'rgba(15, 15, 30, 0.85)',
+};
+
+export const FONTS = {
+  regular: 'System',
+  medium: 'System',
+  bold: 'System',
+};
+
+export const SIZES = {
+  // Spacing
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  xxl: 48,
+
+  // Border radius
+  radiusSm: 8,
+  radiusMd: 12,
+  radiusLg: 20,
+  radiusFull: 999,
+
+  // Font sizes
+  fontSm: 12,
+  fontMd: 14,
+  fontLg: 18,
+  fontXl: 22,
+  fontXxl: 32,
+  fontHuge: 42,
+};
+
+export const SHADOWS = {
+  button: {
+    shadowColor: '#6C63FF',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 16,
+    elevation: 8,
   },
-  dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+  card: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 4,
   },
-} as const;
-
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
-
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
-
-export const Spacing = {
-  half: 2,
-  one: 4,
-  two: 8,
-  three: 16,
-  four: 24,
-  five: 32,
-  six: 64,
-} as const;
-
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+};
